@@ -1,0 +1,2 @@
+ALTER TABLE "users" ADD COLUMN "user_role_id" uuid NOT NULL;--> statement-breakpoint
+ALTER TABLE "users" ADD CONSTRAINT "users_user_role_id_user_role_id_fk" FOREIGN KEY ("user_role_id") REFERENCES "public"."user_role"("id") ON DELETE restrict ON UPDATE cascade;
