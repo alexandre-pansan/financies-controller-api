@@ -1,8 +1,8 @@
 import type { Config } from 'drizzle-kit';
-import dotenv from 'dotenv';
-dotenv.config({
-    path: '.env',
-});
+import * as dotenv from 'dotenv';
+import * as path from 'path';
+
+dotenv.config({ path: path.resolve(__dirname, '.env') });
 
 export default {
     schema: './src/drizzle/schema.ts',
@@ -10,8 +10,15 @@ export default {
     dialect: 'postgresql',
 
     dbCredentials: {
-        url: 'postgresql://postgres:123456@localhost:5432/studies',
+        // user: process.env.DATABASE_USER!,
+        // password: process.env.DATABASE_PASSWORD!,
+        // host: process.env.DATABASE_HOST!,
+        // port: Number(process.env.DATABASE_PORT!),
+        // database: process.env.DATABASE_NAME!,
+        //url: `postgresql://${getEnv('DATABASE_USER')}:'${getEnv('DATABASE_PASSWORD')}'@${getEnv('DATABASE_HOST')}:${getEnv('DATABASE_PORT')}/${getEnv('DATABASE_NAME')}`,
+        url: process.env.DATABASE_URL!,
     },
     verbose: true,
     strict: true,
 } satisfies Config;
+

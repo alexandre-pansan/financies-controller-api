@@ -8,9 +8,19 @@ import { exit } from 'process';
 
 import * as schema from './schema';
 
+const {
+    DATABASE_USER,
+    DATABASE_PASSWORD,
+    DATABASE_HOST,
+    DATABASE_PORT,
+    DATABASE_SCHEMA
+} = process.env;
+
+const DATABASE_URL = `postgresql://${DATABASE_USER}:${DATABASE_PASSWORD}@${DATABASE_HOST}:${DATABASE_PORT}/${DATABASE_SCHEMA}`;
+
 (async () => {
     const pool = new pg.Pool({
-        connectionString: 'postgresql://postgres:123456@localhost:5432/studies',
+        connectionString: DATABASE_URL,
     });
     let db: NodePgDatabase<typeof schema> | null = null;
     db = drizzle(pool, {
