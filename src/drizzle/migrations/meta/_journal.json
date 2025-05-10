@@ -5,36 +5,8 @@
     {
       "idx": 0,
       "version": "7",
-      "when": 1746495236469,
-      "tag": "0000_remarkable_microbe",
-      "breakpoints": true
-    },
-    {
-      "idx": 1,
-      "version": "7",
-      "when": 1746527938496,
-      "tag": "0001_burly_whirlwind",
-      "breakpoints": true
-    },
-    {
-      "idx": 2,
-      "version": "7",
-      "when": 1746528961631,
-      "tag": "0002_wide_multiple_man",
-      "breakpoints": true
-    },
-    {
-      "idx": 3,
-      "version": "7",
-      "when": 1746529729994,
-      "tag": "0003_acoustic_banshee",
-      "breakpoints": true
-    },
-    {
-      "idx": 4,
-      "version": "7",
-      "when": 1746530948052,
-      "tag": "0004_remarkable_junta",
+      "when": 1746702825216,
+      "tag": "0000_luxuriant_cerebro",
       "breakpoints": true
     }
   ]

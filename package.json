@@ -20,13 +20,15 @@
     "test:e2e": "jest --config ./test/jest-e2e.json",
     "db:generate": "drizzle-kit generate",
     "db:migrate": "tsx src/drizzle/migrate.ts",
-    "db:refresh": "npm run db:generate && npm run db:migrate"
+    "db:push": "drizzle-kit push",
+    "db:refresh": "npm run db:generate && npm run ddb:push && npm run db:migrate"
   },
   "dependencies": {
     "@knaadh/nestjs-drizzle-postgres": "^1.2.0",
     "@nestjs/common": "^11.0.1",
     "@nestjs/config": "^4.0.2",
     "@nestjs/core": "^11.0.1",
+    "@nestjs/jwt": "^11.0.0",
     "@nestjs/mapped-types": "*",
     "@nestjs/platform-express": "^11.0.1",
     "@nestjs/swagger": "^11.1.6",

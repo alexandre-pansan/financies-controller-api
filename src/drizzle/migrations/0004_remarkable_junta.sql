@@ -1,1 +1,0 @@
-ALTER TABLE "users" ALTER COLUMN "user_role_id" SET DEFAULT (SELECT id FROM user_roles WHERE name = 'guest' LIMIT 1);
