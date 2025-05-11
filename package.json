@@ -21,7 +21,7 @@
     "db:generate": "drizzle-kit generate",
     "db:migrate": "tsx src/drizzle/migrate.ts",
     "db:push": "drizzle-kit push",
-    "db:refresh": "npm run db:generate && npm run ddb:push && npm run db:migrate"
+    "db:refresh": "npm run db:generate && npm run db:push && npm run db:migrate"
   },
   "dependencies": {
     "@knaadh/nestjs-drizzle-postgres": "^1.2.0",

@@ -10,14 +10,18 @@ export default {
     dialect: 'postgresql',
 
     dbCredentials: {
-        // user: process.env.DATABASE_USER!,
-        // password: process.env.DATABASE_PASSWORD!,
-        // host: process.env.DATABASE_HOST!,
-        // port: Number(process.env.DATABASE_PORT!),
-        // database: process.env.DATABASE_NAME!,
+        user: process.env.DATABASE_USER!,
+        password: process.env.DATABASE_PASSWORD!,
+        host: process.env.DATABASE_HOST!,
+        port: Number(process.env.DATABASE_PORT!),
+        database: process.env.DATABASE_NAME!,
+        ssl: {
+            rejectUnauthorized: false, // aceita certificados autoassinados
+        },
         //url: `postgresql://${getEnv('DATABASE_USER')}:'${getEnv('DATABASE_PASSWORD')}'@${getEnv('DATABASE_HOST')}:${getEnv('DATABASE_PORT')}/${getEnv('DATABASE_NAME')}`,
-        url: process.env.DATABASE_URL!,
+        //url: process.env.DATABASE_URL!,
     },
+
     verbose: true,
     strict: true,
 } satisfies Config;

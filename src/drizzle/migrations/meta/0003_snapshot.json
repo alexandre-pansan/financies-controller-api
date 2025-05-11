@@ -1,6 +1,6 @@
 {
-  "id": "64ec1435-ea68-43dd-9b0c-1fbd2bf3ad93",
-  "prevId": "00000000-0000-0000-0000-000000000000",
+  "id": "be6e30ef-5c60-4d56-92f5-74cc4050c45d",
+  "prevId": "bd42ae25-5d1e-4869-a934-4853e1670c5a",
   "version": "7",
   "dialect": "postgresql",
   "tables": {
@@ -86,12 +86,6 @@
           "primaryKey": false,
           "notNull": true
         },
-        "category": {
-          "name": "category",
-          "type": "varchar(50)",
-          "primaryKey": false,
-          "notNull": true
-        },
         "description": {
           "name": "description",
           "type": "text",
@@ -104,17 +98,11 @@
           "primaryKey": false,
           "notNull": true
         },
-        "installment_id": {
-          "name": "installment_id",
+        "catecory_id": {
+          "name": "catecory_id",
           "type": "uuid",
           "primaryKey": false,
-          "notNull": false
-        },
-        "installment_number": {
-          "name": "installment_number",
-          "type": "integer",
-          "primaryKey": false,
-          "notNull": false
+          "notNull": true
         }
       },
       "indexes": {},
@@ -132,12 +120,12 @@
           "onDelete": "no action",
           "onUpdate": "no action"
         },
-        "transactions_installment_id_installments_id_fk": {
-          "name": "transactions_installment_id_installments_id_fk",
+        "transactions_catecory_id_transaction_categories_id_fk": {
+          "name": "transactions_catecory_id_transaction_categories_id_fk",
           "tableFrom": "transactions",
-          "tableTo": "installments",
+          "tableTo": "transaction_categories",
           "columnsFrom": [
-            "installment_id"
+            "catecory_id"
           ],
           "columnsTo": [
             "id"
@@ -244,7 +232,15 @@
       "indexes": {},
       "foreignKeys": {},
       "compositePrimaryKeys": {},
-      "uniqueConstraints": {},
+      "uniqueConstraints": {
+        "transaction_groups_name_unique": {
+          "name": "transaction_groups_name_unique",
+          "nullsNotDistinct": false,
+          "columns": [
+            "name"
+          ]
+        }
+      },
       "policies": {},
       "checkConstraints": {},
       "isRLSEnabled": false
@@ -306,39 +302,21 @@
           "notNull": true,
           "default": "gen_random_uuid()"
         },
-        "user_id": {
-          "name": "user_id",
+        "transaction_id": {
+          "name": "transaction_id",
           "type": "uuid",
           "primaryKey": false,
           "notNull": true
         },
-        "category_id": {
-          "name": "category_id",
-          "type": "uuid",
-          "primaryKey": false,
-          "notNull": true
-        },
-        "title": {
-          "name": "title",
-          "type": "varchar(100)",
-          "primaryKey": false,
-          "notNull": true
-        },
-        "total_amount": {
-          "name": "total_amount",
-          "type": "numeric(10, 2)",
-          "primaryKey": false,
-          "notNull": true
-        },
-        "installments": {
-          "name": "installments",
+        "number": {
+          "name": "number",
           "type": "integer",
           "primaryKey": false,
           "notNull": true
         },
-        "start_date": {
-          "name": "start_date",
-          "type": "date",
+        "amount": {
+          "name": "amount",
+          "type": "numeric(10, 2)",
           "primaryKey": false,
           "notNull": true
         },
@@ -348,29 +326,35 @@
           "primaryKey": false,
           "notNull": false,
           "default": "now()"
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "now()"
+        },
+        "due_date": {
+          "name": "due_date",
+          "type": "date",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "paid_at": {
+          "name": "paid_at",
+          "type": "date",
+          "primaryKey": false,
+          "notNull": false
         }
       },
       "indexes": {},
       "foreignKeys": {
-        "installments_user_id_users_id_fk": {
-          "name": "installments_user_id_users_id_fk",
+        "installments_transaction_id_transactions_id_fk": {
+          "name": "installments_transaction_id_transactions_id_fk",
           "tableFrom": "installments",
-          "tableTo": "users",
+          "tableTo": "transactions",
           "columnsFrom": [
-            "user_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
-          "onDelete": "no action",
-          "onUpdate": "no action"
-        },
-        "installments_category_id_transaction_categories_id_fk": {
-          "name": "installments_category_id_transaction_categories_id_fk",
-          "tableFrom": "installments",
-          "tableTo": "transaction_categories",
-          "columnsFrom": [
-            "category_id"
+            "transaction_id"
           ],
           "columnsTo": [
             "id"

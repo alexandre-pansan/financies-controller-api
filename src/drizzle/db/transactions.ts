@@ -1,6 +1,7 @@
 import { date, decimal, integer, pgEnum, pgTable, text, uuid, varchar } from "drizzle-orm/pg-core";
 import { users } from "./users";
 import { installments } from "./installments";
+import { transactionCategories } from "./transaction_categories";
 
 
 export const transactionType = pgEnum('transaction_type', ['income', 'expense']);
@@ -11,9 +12,7 @@ export const transactions = pgTable('transactions', {
     title: varchar('title', { length: 100 }).notNull(),
     type: transactionType('type').notNull(),
     amount: decimal('amount', { precision: 10, scale: 2 }).notNull(),
-    category: varchar('category', { length: 50 }).notNull(),
     description: text('description'),
     date: date('date').notNull(),
-    installmentId: uuid('installment_id').references(() => installments.id),
-    installmentNumber: integer('installment_number'), // Ex: 1 de 36
+    categoryId: uuid('catecory_id').references(() => transactionCategories.id).notNull(),
 });

@@ -2,16 +2,17 @@ import { pgTable, uuid, varchar, integer, decimal, date, timestamp } from 'drizz
 
 import { transactionCategories } from './transaction_categories';
 import { users } from './users';
+import { transactions } from './transactions';
 
 export const installments = pgTable('installments', {
     id: uuid('id').defaultRandom().primaryKey(),
-    userId: uuid('user_id').references(() => users.id).notNull(),
-    categoryId: uuid('category_id').references(() => transactionCategories.id).notNull(),
+    transactionId: uuid('transaction_id').references(() => transactions.id).notNull(),
+    number: integer('number').notNull(),
 
-    title: varchar('title', { length: 100 }).notNull(), // Ex: "Financiamento do carro"
-    totalAmount: decimal('total_amount', { precision: 10, scale: 2 }).notNull(),
-    numberOfInstallments: integer('installments').notNull(),
-    startDate: date('start_date').notNull(),
+    amount: decimal('amount', { precision: 10, scale: 2 }).notNull(),
 
     createdAt: timestamp('created_at').defaultNow(),
+    updatedAt: timestamp('updated_at').defaultNow().$onUpdate(() => new Date()),
+    dueDate: date('due_date').notNull(),
+    paidAt: date('paid_at'),
 });

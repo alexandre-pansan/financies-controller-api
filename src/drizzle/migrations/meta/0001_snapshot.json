@@ -1,6 +1,6 @@
 {
-  "id": "64ec1435-ea68-43dd-9b0c-1fbd2bf3ad93",
-  "prevId": "00000000-0000-0000-0000-000000000000",
+  "id": "c3bcf82a-6c7c-4f55-8791-01bb02045ae4",
+  "prevId": "64ec1435-ea68-43dd-9b0c-1fbd2bf3ad93",
   "version": "7",
   "dialect": "postgresql",
   "tables": {
@@ -103,18 +103,6 @@
           "type": "date",
           "primaryKey": false,
           "notNull": true
-        },
-        "installment_id": {
-          "name": "installment_id",
-          "type": "uuid",
-          "primaryKey": false,
-          "notNull": false
-        },
-        "installment_number": {
-          "name": "installment_number",
-          "type": "integer",
-          "primaryKey": false,
-          "notNull": false
         }
       },
       "indexes": {},
@@ -125,19 +113,6 @@
           "tableTo": "users",
           "columnsFrom": [
             "user_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
-          "onDelete": "no action",
-          "onUpdate": "no action"
-        },
-        "transactions_installment_id_installments_id_fk": {
-          "name": "transactions_installment_id_installments_id_fk",
-          "tableFrom": "transactions",
-          "tableTo": "installments",
-          "columnsFrom": [
-            "installment_id"
           ],
           "columnsTo": [
             "id"
@@ -306,39 +281,21 @@
           "notNull": true,
           "default": "gen_random_uuid()"
         },
-        "user_id": {
-          "name": "user_id",
+        "transaction_id": {
+          "name": "transaction_id",
           "type": "uuid",
           "primaryKey": false,
           "notNull": true
         },
-        "category_id": {
-          "name": "category_id",
-          "type": "uuid",
-          "primaryKey": false,
-          "notNull": true
-        },
-        "title": {
-          "name": "title",
-          "type": "varchar(100)",
-          "primaryKey": false,
-          "notNull": true
-        },
-        "total_amount": {
-          "name": "total_amount",
-          "type": "numeric(10, 2)",
-          "primaryKey": false,
-          "notNull": true
-        },
-        "installments": {
-          "name": "installments",
+        "number": {
+          "name": "number",
           "type": "integer",
           "primaryKey": false,
           "notNull": true
         },
-        "start_date": {
-          "name": "start_date",
-          "type": "date",
+        "amount": {
+          "name": "amount",
+          "type": "numeric(10, 2)",
           "primaryKey": false,
           "notNull": true
         },
@@ -348,29 +305,35 @@
           "primaryKey": false,
           "notNull": false,
           "default": "now()"
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "now()"
+        },
+        "due_date": {
+          "name": "due_date",
+          "type": "date",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "paid_at": {
+          "name": "paid_at",
+          "type": "date",
+          "primaryKey": false,
+          "notNull": false
         }
       },
       "indexes": {},
       "foreignKeys": {
-        "installments_user_id_users_id_fk": {
-          "name": "installments_user_id_users_id_fk",
+        "installments_transaction_id_transactions_id_fk": {
+          "name": "installments_transaction_id_transactions_id_fk",
           "tableFrom": "installments",
-          "tableTo": "users",
+          "tableTo": "transactions",
           "columnsFrom": [
-            "user_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
-          "onDelete": "no action",
-          "onUpdate": "no action"
-        },
-        "installments_category_id_transaction_categories_id_fk": {
-          "name": "installments_category_id_transaction_categories_id_fk",
-          "tableFrom": "installments",
-          "tableTo": "transaction_categories",
-          "columnsFrom": [
-            "category_id"
+            "transaction_id"
           ],
           "columnsTo": [
             "id"

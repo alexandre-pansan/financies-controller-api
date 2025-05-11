@@ -1,0 +1,1 @@
+ALTER TABLE "transaction_groups" ADD CONSTRAINT "transaction_groups_name_unique" UNIQUE("name");

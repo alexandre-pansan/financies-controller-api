@@ -22,10 +22,10 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
   ],
   controllers: [AuthController],
   providers: [AuthService,
-    {
+    /* {
       provide: APP_GUARD,
       useClass: AuthGuard,
-    }
+    } */
   ]
 })
 export class AuthModule { }
