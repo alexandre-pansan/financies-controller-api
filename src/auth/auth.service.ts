@@ -10,9 +10,9 @@ export class AuthService {
         private readonly jwtService: JwtService,
     ) { }
 
-    async signIn(email: string, password: string): Promise<any> {
-        console.log('email', email);
-        const user = await this.userService.findOne(email);
+    async signIn(username: string, password: string): Promise<any> {
+        console.log('email', username);
+        const user = await this.userService.findOne(username);
         if (!user) {
             return null;
         }

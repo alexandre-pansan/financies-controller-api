@@ -12,7 +12,7 @@ export class AuthController {
     @Public()
     signIn(@Body() signInDto: Record<string, any>) {
         console.log('signInDto', signInDto);
-        return this.authService.signIn(signInDto.email, signInDto.password);
+        return this.authService.signIn(signInDto.username, signInDto.password);
     }
 
     @UseGuards(AuthGuard)
